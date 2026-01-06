@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <title>貓貓百科 - 吳瑩瑩期末作業</title>
+    
+    <style>
+      body { background-color: #fff9fb; font-family: "Microsoft JhengHei", "Segoe UI Emoji", sans-serif; }
+      .jumbotron { background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); color: #880e4f; border-radius: 0; }
+      .nav-pills .nav-link.active { background-color: #e91e63; }
+      .cat-img { width: 100%; height: 300px; object-fit: cover; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+      
+      /* 影片圖片連結樣式 */
+      .video-link { position: relative; display: block; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.2); transition: transform 0.3s; background-color: #000; }
+      .video-link:hover { transform: scale(1.02); text-decoration: none; }
+      .video-link img { width: 100%; height: auto; display: block; opacity: 0.9; }
+      .video-link::after {
+        content: '▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        background: rgba(233, 30, 99, 0.85); color: white; width: 60px; height: 60px;
+        line-height: 60px; text-align: center; border-radius: 50%; font-size: 24px;
+      }
+
+      /* 轉盤專屬樣式 */
+      .wheel-wrapper { position: relative; width: 300px; height: 300px; margin: 40px auto; }
+      #wheel { 
+        width: 100%; height: 100%; border-radius: 50%; border: 8px solid #fff;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        background: conic-gradient( #ffb3ba 0deg 60deg, #ffdfba 60deg 120deg, #ffffba 120deg 180deg, #baffc9 180deg 240deg, #bae1ff 240deg 300deg, #e1c0ff 300deg 360deg );
+        transition: transform 4s cubic-bezier(0.15, 0, 0.15, 1);
+        position: relative;
+      }
+      .emoji-label { position: absolute; top: 50%; left: 50%; font-size: 40px; transform-origin: 0 0; }
+      .e0 { transform: rotate(30deg) translate(0, -90px) translate(-50%, -50%); } 
+      .e1 { transform: rotate(90deg) translate(0, -90px) translate(-50%, -50%); } 
+      .e2 { transform: rotate(150deg) translate(0, -90px) translate(-50%, -50%); }
+      .e3 { transform: rotate(210deg) translate(0, -90px) translate(-50%, -50%); }
+      .e4 { transform: rotate(270deg) translate(0, -90px) translate(-50%, -50%); }
+      .e5 { transform: rotate(330deg) translate(0, -90px) translate(-50%, -50%); }
+
+      .needle { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 30px solid #e91e63; z-index: 10; }
+      .comment-card { border-left: 5px solid #e91e63; margin-bottom: 15px; transition: 0.3s; }
+      section { padding: 60px 0; }
+      footer { background-color: #343a40; color: white; padding: 3rem 0; margin-top: 50px; }
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">🐾 喵星人日常</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="#home">首頁動機</a></li>
+            <li class="nav-item"><a class="nav-link" href="#project">品種影音</a></li>
+            <li class="nav-item"><a class="nav-link" href="#qa">知識問答</a></li>
+            <li class="nav-item"><a class="nav-link" href="#luck">運勢轉盤</a></li>
+            <li class="nav-item"><a class="nav-link" href="#comments">留言交流</a></li>
+            <li class="nav-item"><a class="nav-link" href="#reflection">心得感想</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid text-center mb-0" id="home">
+      <div class="container">
+        <h1 class="display-4 font-weight-bold">探索問題：為何想做貓貓網站？</h1>
+        <p class="lead">打造一個圖文並茂的平台，讓大家更了解特殊貓種。</p>
+      </div>
+    </div>
+
+    <section id="project">
+      <div class="container">
+        <h2 class="text-center mb-5 font-weight-bold">貓咪品種影音百科</h2>
+        <ul class="nav nav-pills mb-4 justify-content-center" id="pills-tab" role="tablist">
+          <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#sphynx">斯芬克斯</a></li>
+          <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#british">英國短毛貓</a></li>
+          <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#siamese">暹羅貓</a></li>
+        </ul>
+
+        <div class="tab-content bg-white p-4 shadow rounded-lg border">
+          <div class="tab-pane fade show active" id="sphynx">
+            <div class="row align-items-center">
+              <div class="col-lg-5 mb-4">
+                <img src="https://images.pexels.com/photos/991831/pexels-photo-991831.jpeg" class="cat-img mb-3" alt="斯芬克斯">
+                <h3>斯芬克斯無毛貓</h3>
+                <p>智商極高且非常黏人。雖然外型獨特但內心溫柔。</p>
+              </div>
+              <div class="col-lg-7 mb-4">
+                <a href="https://www.youtube.com/watch?v=kCgifE9XOIY" target="_blank" class="video-link">
+                  <img src="https://img.youtube.com/vi/kCgifE9XOIY/maxresdefault.jpg" alt="點擊觀看影片">
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-pane fade" id="british">
+            <div class="row align-items-center">
+              <div class="col-lg-5 mb-4">
+                <img src="https://images.pexels.com/photos/1521306/pexels-photo-1521306.jpeg" class="cat-img mb-3" alt="英短">
+                <h3>英國短毛貓</h3>
+                <p>性格安靜穩定，圓臉非常討喜，是極受歡迎的伴侶貓品種。</p>
+              </div>
+              <div class="col-lg-7 mb-4">
+                <a href="https://www.youtube.com/watch?v=i7ci_510FGM" target="_blank" class="video-link">
+                  <img src="https://img.youtube.com/vi/i7ci_510FGM/maxresdefault.jpg" alt="點擊觀看英短影片">
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="siamese">
+            <div class="row align-items-center">
+              <div class="col-lg-5 mb-4">
+                <img src="https://images.pexels.com/photos/8419745/pexels-photo-8419745.png" class="cat-img mb-3" alt="暹羅貓">
+                <h3>暹羅貓</h3>
+                <p>泰國皇室專屬貴族貓！愛說話且活潑，與主人的互動性極強。</p>
+              </div>
+              <div class="col-lg-7 mb-4">
+                <a href="https://www.youtube.com/watch?v=r5m__Sy4KI8" target="_blank" class="video-link">
+                  <img src="https://img.youtube.com/vi/r5m__Sy4KI8/maxresdefault.jpg" alt="點擊觀看影片">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="qa" class="bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5 font-weight-bold">養貓小知識</h2>
+        <div class="accordion shadow" id="catAccordion">
+          <div class="card">
+            <div class="card-header"><h2 class="mb-0"><button class="btn btn-link btn-block text-left text-dark font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne">🐾 為什麼貓咪需要抓板？</button></h2></div>
+            <div id="collapseOne" class="collapse show" data-parent="#catAccordion"><div class="card-body">貓咪磨爪是為了標記領土、舒展肌肉以及去除老舊爪殼。</div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h2 class="mb-0"><button class="btn btn-link btn-block text-left text-dark font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo">🌿 為什麼貓咪會吃草？</button></h2></div>
+            <div id="collapseTwo" class="collapse" data-parent="#catAccordion"><div class="card-body">貓咪吃草通常是為了攝取纖維素，幫助吐出胃裡的毛球，或者補充葉酸。建議提供專門的「貓草」。</div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h2 class="mb-0"><button class="btn btn-link btn-block text-left text-dark font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseThree">💧 如何增加貓咪飲水量？</button></h2></div>
+            <div id="collapseThree" class="collapse" data-parent="#catAccordion"><div class="card-body">貓咪天生對流動的水感興趣，可以設置自動飲水器，或是在食物中添加溫水，預防泌尿系統疾病。</div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h2 class="mb-0"><button class="btn btn-link btn-block text-left text-dark font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseFour">🚫 為什麼不能給貓喝牛奶？</button></h2></div>
+            <div id="collapseFour" class="collapse" data-parent="#catAccordion"><div class="card-body">大多數成年貓咪都有「乳糖不耐症」，喝牛奶容易引起腹瀉與脫水。若要餵食應選擇專用的寵物奶。</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="luck">
+      <div class="container text-center">
+        <h2 class="font-weight-bold mb-4">今日喵喵運勢</h2>
+        <div class="wheel-wrapper">
+          <div class="needle"></div>
+          <div id="wheel">
+            <span class="emoji-label e0">💰</span><span class="emoji-label e1">✨</span>
+            <span class="emoji-label e2">🐾</span><span class="emoji-label e3">❤️</span>
+            <span class="emoji-label e4">🍣</span><span class="emoji-label e5">💤</span>
+          </div>
+        </div>
+        <button class="btn btn-danger btn-lg px-5 mt-4" onclick="spinWheel()">旋轉運勢！</button>
+        <div id="luckResult" class="h4 mt-4 text-danger font-weight-bold" style="min-height: 40px;"></div>
+      </div>
+    </section>
+
+    <section id="comments" class="container bg-white rounded-lg shadow-sm py-5">
+      <h2 class="text-center mb-5 font-weight-bold">喵友留言板</h2>
+      <div class="row">
+        <div class="col-md-5 mb-4">
+          <div class="card shadow-sm border-0">
+            <div class="card-body">
+              <input type="text" class="form-control mb-2" id="userName" placeholder="您的暱稱">
+              <textarea class="form-control mb-2" id="userMsg" rows="3" placeholder="想留下什麼足跡?"></textarea>
+              <button type="button" class="btn btn-danger btn-block" onclick="addComment()">送出留言</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div id="commentList">
+            <div class="card comment-card shadow-sm"><div class="card-body"><h6 class="font-weight-bold mb-1">小助手 🐾</h6><p class="card-text text-muted mb-0">這是一個好溫馨的網站！</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reflection" class="bg-light border-top py-5">
+      <div class="container text-center">
+        <h2 class="font-weight-bold mb-4">心得感想</h2>
+        <div class="col-md-8 mx-auto text-secondary text-left">
+          <p class="lead">這次專案最讓我印象深刻的是解決問題的過程。當發現 YouTube 影片嵌入出錯時，我選擇了使用封面圖片超連結的方案，這讓網站加載更順暢。此外，我還加入了留言板與運勢轉盤功能，讓網站看起來更專業且生動。</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="text-center">
+      <div class="container"><p>姓名：吳瑩瑩 | 學號：C113190117</p></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      function spinWheel() {
+        const wheel = document.getElementById('wheel');
+        const resultText = document.getElementById('luckResult');
+        resultText.innerText = "喵喵正在掐指一算...";
+        const randomDeg = Math.floor(Math.random() * 360) + 1800; 
+        wheel.style.transform = `rotate(${randomDeg}deg)`;
+        setTimeout(() => {
+          const actualDeg = randomDeg % 360;
+          const fortunes = ["財富喵 💰","錦鯉喵 ✨","冒險喵 🐾","撒嬌喵 ❤️","點心喵 🍣","睡覺喵 💤"];
+          const index = Math.floor(((360 - actualDeg) % 360) / 60);
+          resultText.innerText = fortunes[index] + "：今天運勢大吉！";
+        }, 4000); 
+      }
+
+      function addComment() {
+        const name = document.getElementById('userName').value;
+        const msg = document.getElementById('userMsg').value;
+        if (!name || !msg) { alert("請填寫名字和內容！"); return; }
+        const html = `<div class="card comment-card shadow-sm mb-2"><div class="card-body"><h6 class="font-weight-bold mb-1">${name}</h6><p class="card-text text-muted mb-0">${msg}</p></div></div>`;
+        document.getElementById('commentList').insertAdjacentHTML('afterbegin', html);
+        document.getElementById('userName').value = ''; document.getElementById('userMsg').value = '';
+      }
+    </script>
+  </body>
+</html>
